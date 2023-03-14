@@ -2,31 +2,35 @@ import logo from './logo.svg';
 import './App.css';
 import React from 'react'
 import { useEffect, useRef, useState } from "react";
-import { getTemperature } from './utils/firebase.js'
+import { getTemperatureRef } from './utils/firebase.js'
 import { formatTimestamp } from './utils/formatter';
+import { db } from './utils/firebase.js';
+import { getDoc, doc } from 'firebase/firestore';
+import { onSnapshot } from 'firebase/firestore';
 
 function App() {
 
-  const [temp, setTemp] = useState({
+  const [tempSensor, setTempSensor] = useState({
     current_temp: '',
     last_timestamp: ''
   });
 
   useEffect(() => {
-    getTemperature()
-    .then((snap) => {
-      if(snap.exists()) {
-        setTemp(snap.data());
-        console.log("Document data: ", snap.data());
-      }
+    const unsub = onSnapshot(getTemperatureRef(), (snapshot) => {
+      if(snapshot.exists) {
+        setTempSensor(snapshot.data());
+      } 
     });
+    return () => {
+      unsub();
+    }
   }, []);
 
   return (
     <div className="App">
       <header className="App-header">
-        <p>Temperature = {temp.current_temp}</p>
-        <p>last updated {formatTimestamp(temp.last_timestamp)}</p>
+        <p>Temperature = {tempSensor.current_temp}</p>
+        <p>last updated {formatTimestamp(tempSensor.last_timestamp)}</p>
       </header>
     </div>
   );
