@@ -20,7 +20,6 @@ const app = initializeApp(firebaseConfig);
 export const db = getFirestore();
 
 
-export const getTemperature = () => {
-    const docRef = doc(db, 'sensors', 'temperature');
-    return getDoc(docRef);
+export const getTemperatureRef = () => {
+    return doc(db, 'sensors', 'temperature');
 }
