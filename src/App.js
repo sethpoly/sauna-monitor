@@ -3,7 +3,7 @@ import './App.css';
 import React from 'react'
 import { useEffect, useRef, useState } from "react";
 import { getTemperature } from './utils/firebase.js'
-import { db } from './utils/firebase.js'
+import { formatTimestamp } from './utils/formatter';
 
 function App() {
 
@@ -20,23 +20,13 @@ function App() {
         console.log("Document data: ", snap.data());
       }
     });
-  }, "");
+  }, []);
 
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Temperature = {temp.current_temp}
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p>Temperature = {temp.current_temp}</p>
+        <p>last updated {formatTimestamp(temp.last_timestamp)}</p>
       </header>
     </div>
   );
