@@ -1,24 +1,9 @@
 import React from 'react';
-import {
-Nav,
-NavLink,
-Bars,
-NavMenu,
-NavBtn,
-NavBtnLink,
-} from './NavbarElements';
+import styles from './navbar.module.css';
 
 const Navbar = () => {
 return (
-	<>
-	<Nav>
-		<NavMenu>
-		<NavLink to='/' activeStyle>
-			RhodesSauna
-		</NavLink>
-		</NavMenu>
-	</Nav>
-	</>
+	<block><h1>RhodesSauna</h1></block>
 );
 };
 
