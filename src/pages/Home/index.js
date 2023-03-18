@@ -1,8 +1,9 @@
 import React from 'react';
-import { formatTimestamp } from '../utils/formatter';
-import { getTemperatureRef } from '../utils/firebase';
+import { formatTimestamp, formatTemp } from '../../utils/formatter';
+import { getTemperatureRef } from '../../utils/firebase';
 import { onSnapshot } from 'firebase/firestore';
 import { useEffect, useState } from "react";
+import styles from './home.module.css';
 
 const Home = () => {
 
@@ -23,15 +24,9 @@ const Home = () => {
     }, []);
 
     return (
-        <div
-            style={{
-                justifyContent: 'Center',
-                alignItems: 'Right',
-                height: '100vh'
-            }}
-        >
-            <p>Temperature = {tempSensor.current_temp}</p>
-            <p>last updated {formatTimestamp(tempSensor.last_timestamp)}</p>
+        <div className={styles['container']}>
+            <p className={styles['sensor-value']}>{formatTemp(tempSensor.current_temp)}</p>
+            <p className={styles['sensor-subheader']}>last updated {formatTimestamp(tempSensor.last_timestamp)}</p>
         </div>
     );
 };

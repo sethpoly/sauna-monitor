@@ -1,4 +1,4 @@
-block {
+.nav {
     display: flex;
     padding-left: 3em;
     padding-top: 1em;
@@ -28,7 +28,7 @@ h1:before {
 }
 
 @media screen and (max-width: 720px) {
-    block {
+    .nav {
         justify-content: center;
         padding-left: 0em;
     }
