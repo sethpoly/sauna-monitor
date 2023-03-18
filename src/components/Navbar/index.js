@@ -1,9 +1,9 @@
 import React from 'react';
-import styles from './navbar.module.css';
+import './navbar.module.css';
 
-const Navbar = () => {
+const Navbar = ({onClick}) => {
 return (
-	<block><h1>RhodesSauna</h1></block>
+	<block><h1 onClick={onClick}>RhodesSauna</h1></block>
 );
 };
 

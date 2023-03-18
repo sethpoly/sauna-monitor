@@ -5,9 +5,15 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/home';
 
 function App() {
+
+  function refreshPage() {
+    window.location.reload(false);
+    //console.log("WOW");
+  }
+
   return (
     <Router>
-      <Navbar />
+      <Navbar onClick={refreshPage}/>
       <Routes>
         <Route path='/' exact Component={Home}/>
       </Routes>
