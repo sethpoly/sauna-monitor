@@ -1,9 +1,11 @@
 import React from 'react';
-import './navbar.module.css';
+import styles from './navbar.module.css';
 
 const Navbar = ({onClick}) => {
 return (
-	<block><h1 onClick={onClick}>RhodesSauna</h1></block>
+	<div className={styles['nav']}>
+		<h1 onClick={onClick}>RhodesSauna</h1>
+	</div>
 );
 };
 
