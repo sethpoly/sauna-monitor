@@ -1,0 +1,23 @@
+.container {
+    padding: 2em;
+    padding-top: 5em;
+}
+
+.sensor-value {
+    margin: 0;
+    font-size: 5em;
+}
+
+.sensor-subheader {
+    margin: 0;
+    color: #626262;
+}
+
+@media screen and (max-width: 720px) {
+    .container {
+        width: 50%;
+        margin: auto;
+        text-align: left;
+    }
+}
+
