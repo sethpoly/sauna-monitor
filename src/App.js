@@ -8,7 +8,6 @@ function App() {
 
   function refreshPage() {
     window.location.reload(false);
-    //console.log("WOW");
   }
 
   return (
