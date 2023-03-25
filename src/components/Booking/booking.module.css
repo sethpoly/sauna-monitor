@@ -20,6 +20,19 @@ h3 {
     color: #626262;
 }
 
+.header-with-subheader {
+    margin: 0;
+    padding-bottom: 0;
+}
+
+.subheader {
+    margin: 0;
+    padding-bottom: .5em;
+    font-weight: 400;
+    color: #626262;
+    font-size: .9em;
+}
+
 .input-container {
     padding-bottom: 1em;;
 }
