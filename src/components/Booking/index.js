@@ -2,22 +2,24 @@ import React from "react";
 import { useState } from "react";
 import Button from '@mui/material/Button';
 import styles from './booking.module.css';
-import { MobileDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
+import { MobileDatePicker, LocalizationProvider, TimeField } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import dayjs from "dayjs";
 
 const Booking = () => {
 
     // Temp
     const availableSeats = 3;
 
+    // Show bookings container
     const [showBookings, setShowBookings] = useState(false);
     const onButtonClick = () => {
         setShowBookings(true);
     }
 
+    // People count for booking
     const maxPeople = 4;
     const[peopleCount, setPeopleCount] = useState(1);
     const handlePeopleCountChange = (
@@ -26,6 +28,9 @@ const Booking = () => {
     ) => {
         setPeopleCount(peopleCount);
     }
+
+    // Time
+    const [time, setTime] = useState(dayjs());
 
     const renderToggleGroupChildren = () => {
         var children = [];
@@ -42,11 +47,13 @@ const Booking = () => {
                 <h2 className={styles['header']}>Book Time</h2>
                 <div className={styles['input-container']}>
                     <h3>Select a day</h3>
-                    <MobileDatePicker disablePast="true"/>
+                    <MobileDatePicker disablePast/>
                 </div>
                 <div className={styles['input-container']}>
                     <h3>Select a time</h3>
-                    <MobileTimePicker disablePast="true"/>
+                    <TimeField 
+                        value={time}
+                        onChange={(newValue) => setTime(newValue)}/>
                 </div>
                 <div className={styles['input-container']}>
                     <h3 className={styles["header-with-subheader"]}>Select number of seats</h3>
