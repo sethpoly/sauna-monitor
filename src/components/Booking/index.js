@@ -35,7 +35,7 @@ const Booking = () => {
     const renderToggleGroupChildren = () => {
         var children = [];
         for (let index = 1; index <= maxPeople; index++) {
-            children.push(<ToggleButton value={index} disabled={index > availableSeats}>{index}</ToggleButton>);                      
+            children.push(<ToggleButton key={index} value={index} disabled={index > availableSeats}>{index}</ToggleButton>);                      
         }
         return children;
     }
