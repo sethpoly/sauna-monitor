@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
 import styles from './booking.module.css';
 import { LocalizationProvider, MobileDateTimePicker } from '@mui/x-date-pickers';
@@ -9,6 +10,8 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { getBookingRef } from "../../utils/firebase";
 import { getDocs } from "firebase/firestore";
 import { bookingConverter, BookingError } from "../../utils/booking";
+import { Box } from "@mui/system";
+import CloseIcon from '@mui/icons-material/Close';
 
 const Booking = () => {
 
@@ -107,7 +110,10 @@ const Booking = () => {
         <LocalizationProvider dateAdapter={AdapterDayjs}>
         <div className={styles['container']} >
             {showBookings ? <div className={styles['book-time-container']}>
-                <h2 className={styles['header']}>Book Time</h2>
+                <Box alignItems='center' display='flex'>
+                    <h2 className={styles['header']}>Book Time</h2>
+                    <IconButton onClick={() => {setShowBookings(false)}}><CloseIcon/></IconButton>
+                </Box>
                 <div className={styles['input-container']}>
                     <h3>Select a time</h3>
                     <MobileDateTimePicker 
@@ -126,7 +132,12 @@ const Booking = () => {
                             {renderToggleGroupChildren()}
                     </ToggleButtonGroup>
                 </div>
-                <Button onClick={() => {}} variant="contained" color="primary">Confirm time</Button>
+
+                <div className={styles["col"]}>
+                    <Box>
+                        <Button onClick={() => {}} variant="contained" color="primary">Confirm time</Button>
+                    </Box>
+                </div>
                 {error !== null ? <p className={styles["error"]}>{error.message}</p> : null}
             </div> : 
             <Button onClick={onButtonClick} variant="contained" color="primary">Book Time</Button>}
