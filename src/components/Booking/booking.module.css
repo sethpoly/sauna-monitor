@@ -44,3 +44,11 @@ h3 {
 .error {
     color: rgb(184, 15, 15);
 }
+
+.col {
+    padding-top: 1em;
+}
+
+.row {
+    display: flex;
+}
