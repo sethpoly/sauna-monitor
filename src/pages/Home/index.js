@@ -4,6 +4,7 @@ import { getTemperatureRef } from '../../utils/firebase';
 import { onSnapshot } from 'firebase/firestore';
 import { useEffect, useState } from "react";
 import styles from './home.module.css';
+import Booking from '../../components/Booking';
 
 const Home = () => {
 
@@ -27,6 +28,7 @@ const Home = () => {
         <div className={styles['container']}>
             <p className={styles['sensor-value']}>{formatTemp(tempSensor.current_temp)}</p>
             <p className={styles['sensor-subheader']}>last updated {formatTimestamp(tempSensor.last_timestamp)}</p>
+            <Booking></Booking>
         </div>
     );
 };

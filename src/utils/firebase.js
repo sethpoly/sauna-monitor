@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { collection, getFirestore } from "firebase/firestore";
 import { doc } from 'firebase/firestore';
 
 const firebaseConfig = {
@@ -19,4 +19,8 @@ export const db = getFirestore();
 
 export const getTemperatureRef = () => {
     return doc(db, 'sensors', 'temperature');
+}
+
+export const getBookingRef = () => {
+  return collection(db, 'bookings');
 }
