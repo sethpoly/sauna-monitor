@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import IconButton from '@mui/material/IconButton';
+import { TextField } from "@mui/material";
 import Button from '@mui/material/Button';
 import styles from './booking.module.css';
 import { LocalizationProvider, MobileDateTimePicker } from '@mui/x-date-pickers';
@@ -11,7 +11,6 @@ import { getBookingRef } from "../../utils/firebase";
 import { getDocs } from "firebase/firestore";
 import { bookingConverter, BookingError } from "../../utils/booking";
 import { Box } from "@mui/system";
-import CloseIcon from '@mui/icons-material/Close';
 
 const Booking = () => {
 
@@ -23,6 +22,9 @@ const Booking = () => {
     const onButtonClick = () => {
         setShowBookings(true);
     }
+
+    // Name textfield
+    const [nameField, setNameField] = useState("");
 
     // Render custom seat toggle group
     const renderToggleGroupChildren = () => {
@@ -110,10 +112,19 @@ const Booking = () => {
         <LocalizationProvider dateAdapter={AdapterDayjs}>
         <div className={styles['container']} >
             {showBookings ? <div className={styles['book-time-container']}>
-                <Box alignItems='center' display='flex'>
+                <Box alignItems='center' display='flex' width='100%'>
                     <h2 className={styles['header']}>Book Time</h2>
-                    <IconButton onClick={() => {setShowBookings(false)}}><CloseIcon/></IconButton>
                 </Box>
+                <div className={styles['input-container']}>
+                    <h3>Enter your name</h3>
+                    <TextField 
+                        id="outlined-basic"
+                        label="Name" 
+                        variant="outlined" 
+                        value={nameField}
+                        onChange={(newValue) => {setNameField(newValue.value)}}
+                    />
+                </div>
                 <div className={styles['input-container']}>
                     <h3>Select a time</h3>
                     <MobileDateTimePicker 
@@ -136,6 +147,9 @@ const Booking = () => {
                 <div className={styles["col"]}>
                     <Box>
                         <Button onClick={() => {}} variant="contained" color="primary">Confirm time</Button>
+                    </Box>
+                    <Box pt='.5em'>
+                        <Button onClick={() => {setShowBookings(false)}} color="primary">Cancel</Button>
                     </Box>
                 </div>
                 {error !== null ? <p className={styles["error"]}>{error.message}</p> : null}

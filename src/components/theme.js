@@ -1,6 +1,11 @@
 import { createTheme } from '@mui/material/styles';
 
 export const theme = createTheme({
+  typography: {
+    button: {
+      textTransform: 'none'
+    }
+  },
   status: {
     danger: '#e53e3e',
   },

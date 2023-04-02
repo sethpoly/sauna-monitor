@@ -52,3 +52,7 @@ h3 {
 .row {
     display: flex;
 }
+
+.btn {
+    margin-top: 3em;
+}
